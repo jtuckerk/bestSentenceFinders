@@ -80,11 +80,11 @@ for (key, value, sent) in sentence_list:
 
     x.append(count)
     y.append(value.data)
-
+    print value.data
     count+=1
 
 axframe = matplotlib.pyplot.axes([0.0, 0.1, 1, 0.05])
-top5 = sorted(sentence_list,key=lambda x: x[1])[-10:]
+top5 = sorted(sentence_list,key=lambda x: x[1])[-5:]
 parRanges = [3,13,19,25,31,41,46,55,63,81,85,100,109,115,124,133,137,142,151,154,159,162,165,172,175,180,188,192,196]
 last = -1
 c = 0

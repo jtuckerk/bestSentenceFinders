@@ -50,11 +50,11 @@ tfs_full = tfidf_full.fit_transform(token_dict_full.values())
 maxNum = 0
 maxSent =""
 count = 0
-sentence_list.append((sentences[0], sps.coo_matrix(([0], ([0], [0])), shape=(1, 1)),0))
-for i in xrange(1,len(sentences) -1):
-    textSoFar = " ".join(sentences[:i])
+
+for i in xrange(0,len(sentences) -1):
+    textAfter = " ".join(sentences[i+1:])
     
-    lowers = textSoFar.lower()
+    lowers = textAfter.lower()
     no_punctuation = lowers.translate(None, string.punctuation)
     token_dict[file] = no_punctuation
     tfidf = TfidfVectorizer(tokenizer=tokenize, stop_words='english')
@@ -80,11 +80,11 @@ for (key, value, sent) in sentence_list:
 
     x.append(count)
     y.append(value.data)
-
+    
     count+=1
 
 axframe = matplotlib.pyplot.axes([0.0, 0.1, 1, 0.05])
-top5 = sorted(sentence_list,key=lambda x: x[1])[-10:]
+top5 = sorted(sentence_list,key=lambda x: x[1])[-5:]
 parRanges = [3,13,19,25,31,41,46,55,63,81,85,100,109,115,124,133,137,142,151,154,159,162,165,172,175,180,188,192,196]
 last = -1
 c = 0
@@ -112,8 +112,7 @@ z = []
 for a in sentence_list:
 
     if a in top5:
-        print "==================="
-        print a
+        
         z.append('r')
     else:
         z.append('b')
